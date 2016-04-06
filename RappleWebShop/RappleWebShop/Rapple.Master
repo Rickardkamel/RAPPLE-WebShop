@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Rapple.master.cs" Inherits="RappleWebShop.Rapple" %>
+
+<%@ Import Namespace="RappleWebShop" %>
+<%@ Import Namespace="RappleWebShop.Logic" %>
+
+<!DOCTYPE html>
+
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
+<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/RappleJS.js"></script>
+<link href="Content/Styles.css" rel="stylesheet" />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form runat="server">
+        <div>
+            <nav class="navbar navbar-inverse">
+                <%  var dHandler = new DataHandler();
+
+                    var categoryList = dHandler.LoadCategory();
+                %>
+                <div>
+                    <header class="navbar-header">
+                        <button style="height: 50px;" class="btn btn-dropdown dropdown-toggle pull-left" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user" style="margin-top: 3px;"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="glyphicon glyphicon-user" href="ProfilePage.aspx"> My Profile</a></li>
+                            <li><a class="glyphicon glyphicon-list" href="OrderHistoryPage.aspx"> Order History</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:LinkButton runat="server" class="glyphicon glyphicon-log-out" OnClick="LogOut" Text=" Log Out" />
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav pushCat">
+                            <li><a href="Default.aspx">Home</a></li>
+                            <% foreach (var category in categoryList)
+                                {%>
+                            <li><a href="/ProductPage.aspx?page=<%: category.Name %>"><%: category.Name %></a></li>
+                            <% } %>
+                            <li><a href="AboutPage.aspx">About Us</a></li>
+                        </ul>
+                    </header>
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
+                        <li><a href="CartPage.aspx"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="myBackground contentPlacement">
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+</body>
+
+</html>

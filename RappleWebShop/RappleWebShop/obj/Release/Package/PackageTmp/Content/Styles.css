@@ -1,0 +1,107 @@
+﻿.btn-dropdown {
+    color: #9d9d9d;
+    background-color: #222;
+    
+    font-size: 23px;
+}
+
+    .btn-dropdown:focus,
+    .btn-dropdown.focus {
+        color: white;
+    }
+
+.btn-dropdown:hover {
+  color: white;
+}
+
+.myBackground {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ffffff;
+}
+
+.contentPlacement {
+  max-width: 1000px;
+  height: 800px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.pushCat li {
+    padding-left: 90px;
+}
+
+.glyphicon { margin-right:5px; }
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+
+.body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.checkbox label, .radio label {
+    padding-left: 0px;
+}
+
+.centerValidator {
+    text-align: center;
+    color: #008b8b;
+}

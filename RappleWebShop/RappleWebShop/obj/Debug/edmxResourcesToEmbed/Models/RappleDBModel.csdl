@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RappleDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RappleContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="RappleDBModel.Category" />
+    <EntitySet Name="Orders" EntityType="RappleDBModel.Order" />
+    <EntitySet Name="Products" EntityType="RappleDBModel.Product" />
+    <EntitySet Name="Users" EntityType="RappleDBModel.User" />
+    <AssociationSet Name="FK__Order__UserId__5C57A83E" Association="RappleDBModel.FK__Order__UserId__5C57A83E">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="Product_Category" Association="RappleDBModel.Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="RappleDBModel.Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="RappleDBModel.FK__Order__UserId__5C57A83E" FromRole="Order" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categories" Relationship="RappleDBModel.Product_Category" FromRole="Product" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="WantsOffers" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="RappleDBModel.FK__Order__UserId__5C57A83E" FromRole="User" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK__Order__UserId__5C57A83E">
+    <End Type="RappleDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="RappleDBModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Product_Category">
+    <End Type="RappleDBModel.Category" Role="Category" Multiplicity="*" />
+    <End Type="RappleDBModel.Product" Role="Product" Multiplicity="*" />
+  </Association>
+</Schema>
